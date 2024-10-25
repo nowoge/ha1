@@ -105,7 +105,49 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    @DisplayName("should display negative number")
+    void testSubtractionIntoNegative() {
+        Calculator calc = new Calculator();
 
-    //TODO hier weitere Tests erstellen
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(8);
+        calc.pressEqualsKey();
+
+        String expected = "-3";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should multiply numbers")
+    void testMultiplication() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+
+        String expected = "25";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should show % after adding digit number and percentage operation")
+    void testPercentage() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressUnaryOperationKey("%");
+        calc.pressEqualsKey();
+
+        String expected = "0.05";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
+
 }
 
