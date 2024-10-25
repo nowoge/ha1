@@ -44,10 +44,18 @@ public class Calculator {
      * Werte sowie der aktuelle Operationsmodus zurückgesetzt, so dass der Rechner wieder
      * im Ursprungszustand ist.
      */
+    private boolean firstClearKey = true;
+
     public void pressClearKey() {
-        screen = "0";
-        latestOperation = "";
-        latestValue = 0.0;
+        if (firstClearKey) {
+            screen = "0";
+            firstClearKey = false;
+        } else {
+            screen = "0";
+            latestOperation = "";
+            latestValue = 0.0;
+            firstClearKey = true;
+        }
     }
 
     /**
@@ -131,5 +139,5 @@ public class Calculator {
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
     }
-    
+
 }
